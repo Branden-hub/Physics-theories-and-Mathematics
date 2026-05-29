@@ -1,0 +1,699 @@
+Mass Spectrometry (Mass-to-Charge Sorting) How it works: Ions are deflected by magnetic fields based on mass/charge ratios. Reality Insight: Matter has quantized signatures. Isotopic patterns reveal universal atomic building blocks
+That’s a solid “Reality Insight,” and mass spectrometry is a perfect example of how the quantized nature of matter shows up in measurable, information-rich patterns.
+
+⚙ How Mass-to-Charge Sorting Works
+Ionization — The sample’s molecules are ionized (often by electron impact, laser desorption, or electrospray), giving them a net charge.
+
+Acceleration — These ions are accelerated into a beam by an electric field.
+
+Magnetic/Electric Deflection — In a magnetic sector instrument, the beam passes through a magnetic field. The Lorentz force bends their path, and the radius of curvature depends on the mass-to-charge ratio 
+𝑚
+/
+𝑧
+.
+
+Detection — By scanning the magnetic field strength or detector position, the instrument separates ions by 
+𝑚
+/
+𝑧
+ and records their intensities.
+
+🔬 Why This Reveals “Quantized Signatures”
+Isotopes — Atoms of the same element can have different numbers of neutrons (e.g., 
+12
+𝐶
+ vs. 
+13
+𝐶
+), giving them slightly different masses.
+
+Isotopic Patterns — A molecule’s spectrum shows a cluster of peaks — the isotopic envelope — whose spacing and relative heights are dictated by the natural abundance of each isotope.
+
+Universality — These patterns are the same everywhere in the universe because they arise from nuclear structure and fundamental constants, not local conditions.
+
+🌌 Reality Insight Connection
+Mass spectrometry doesn’t just measure “weight” — it measures identity at the atomic level.
+
+The fact that isotopic patterns are predictable and reproducible means matter is built from a finite set of quantized building blocks.
+
+This is an information-theoretic fingerprint of reality: the spectrum is a code, and the isotopic peaks are the alphabet.
+
+Whether you’re analyzing a meteorite, a protein, or a synthetic polymer, the same isotopic rules apply — a universal grammar of matter.
+
+
+Objective:
+Continuously discover, aggregate, and compile a comprehensive, deduplicated library of AI-related components, skills, modules, and capabilities from all accessible public sources.
+
+Scope:
+- Code repositories: GitHub, GitLab, Bitbucket, Hugging Face Hub, ModelScope, Papers with Code.
+- AI tool directories: FutureTools, Futurepedia, ToolsPedia, AIwizard, LangChain Hub, Haystack Components, AI Elements.
+- Academic/code indexes: arXiv (with code links), Awesome-* GitHub lists, curated AI repos.
+
+Data to Collect for Each Component:
+- Component name
+- Short description
+- Domain (e.g., NLP, CV, Audio, Multi-modal, Robotics, Reasoning)
+- Primary function / skill
+- Source repository URL
+- License type
+- Programming language(s)
+- Dependencies
+- Example usage code snippet
+- Documentation link
+- Tags / keywords
+
+Operational Directives:
+1. Perform headless, multi-source search queries for AI-related components across all listed sources.
+2. Normalize results into a unified schema with consistent field names.
+3. Deduplicate entries by repository URL and component name.
+4. Store results in a structured format (e.g., JSON or database-ready).
+5. Include only components with accessible source code and usage examples.
+6. Update the library incrementally with each run, preserving historical entries.
+7. Flag broken links or deprecated components for review.
+8. Prioritize components with active maintenance and recent commits.
+
+Search Strategy:
+- Use targeted queries like "site:github.com AI component", "NLP module", "computer vision library", "Hugging Face model card", "LangChain tool", "Haystack retriever".
+- Crawl aggregator sites’ category pages for AI tools and extract metadata.
+- Follow links from curated lists (Awesome AI, Awesome ML, etc.) to source repos.
+
+Output:
+- Export aggregated data in machine-readable format.
+- Provide a human-readable index sorted by domain and skill type.
+- Include statistics: total components, domains covered, update timestamp.
+
+Constraints:
+- Respect robots.txt and API rate limits.
+- Only include publicly available, legally shareable code and metadata.
+- No execution of untrusted code; metadata extraction only.
+
+Goal:
+Produce a living, searchable, and complete AI Component Library that can be used as a reference for building new AI systems.
+
+
+Goal: Continuously crawl major sources for AI components (models, libraries, tools), extract metadata, normalize to one schema, deduplicate, and export.
+
+Core parts:
+
+Fetchers: Source-specific modules (GitHub, Hugging Face, LangChain Hub, Haystack, Awesome lists).
+
+Parser/Normalizer: Standardizes fields into one schema.
+
+Store: SQLite for durability and queries + JSONL export.
+
+Orchestrator: Schedules, rate-limits, logs, and retries.
+
+ai_component_aggregator/
+  .env.example
+  config.yml
+  main.py
+  schema.py
+  storage.py
+  normalize.py
+  utils.py
+  exporters/
+    export_jsonl.py
+    export_markdown.py
+  fetchers/
+    __init__.py
+    github.py
+    huggingface.py
+    langchain_hub.py
+    haystack.py
+    awesome_lists.py
+
+
+{
+  "id": "stable-uuid-v5",
+  "name": "ComponentName",
+  "summary": "One-liner purpose",
+  "domain": ["NLP","CV","Audio","Multimodal","Reasoning","Robotics","Data","Infra"],
+  "skills": ["retrieval","reranking","captioning","NER"],
+  "source": "github|huggingface|langchain_hub|haystack|awesome",
+  "repo_url": "https://...",
+  "homepage": "https://...",
+  "docs_url": "https://...",
+  "license": "Apache-2.0",
+  "languages": ["Python","C++"],
+  "tags": ["transformers","embeddings"],
+  "dependencies": ["torch>=2.0","transformers>=4.40"],
+  "example_code": "short snippet",
+  "readme_excerpt": "first 500-1000 chars",
+  "stars": 1234,
+  "last_commit_iso": "2025-08-01T12:00:00Z",
+  "is_active": true,
+  "added_at_iso": "2025-09-05T06:55:00Z",
+  "updated_at_iso": "2025-09-05T06:55:00Z",
+  "deprecated": false,
+  "broken_links": []
+}
+
+
+# storage.py (snippet)
+CREATE_TABLE = """
+CREATE TABLE IF NOT EXISTS components (
+  id TEXT PRIMARY KEY,
+  name TEXT,
+  summary TEXT,
+  domain TEXT,            -- JSON string
+  skills TEXT,            -- JSON string
+  source TEXT,
+  repo_url TEXT,
+  homepage TEXT,
+  docs_url TEXT,
+  license TEXT,
+  languages TEXT,         -- JSON string
+  tags TEXT,              -- JSON string
+  dependencies TEXT,      -- JSON string
+  example_code TEXT,
+  readme_excerpt TEXT,
+  stars INTEGER,
+  last_commit_iso TEXT,
+  is_active INTEGER,
+  added_at_iso TEXT,
+  updated_at_iso TEXT,
+  deprecated INTEGER,
+  broken_links TEXT        -- JSON string
+);
+CREATE INDEX IF NOT EXISTS idx_source ON components(source);
+CREATE INDEX IF NOT EXISTS idx_name ON components(name);
+CREATE INDEX IF NOT EXISTS idx_repo ON components(repo_url);
+"""
+
+
+# .env.example
+GITHUB_TOKEN=ghp_...
+HUGGINGFACE_TOKEN=hf_...
+USER_AGENT=AI-Component-Aggregator/1.0
+
+
+
+# config.yml
+scheduler:
+  max_concurrent: 4
+  backoff_base_seconds: 2
+  max_retries: 3
+
+sources:
+  github:
+    queries:
+      - "transformers language:model stars:>200"
+      - "embeddings OR vector database OR retriever stars:>200"
+      - "computer vision ai library stars:>200"
+      - "speech recognition OR tts OR asr stars:>200"
+      - "langchain tool OR agent toolkit stars:>100"
+    languages: ["Python","C++","Rust","JavaScript","TypeScript"]
+    per_query_limit: 100
+  huggingface:
+    tasks: ["text-classification","text-generation","question-answering","image-classification","automatic-speech-recognition","embeddings","multimodal"]
+    per_task_limit: 100
+  langchain_hub:
+    categories: ["tools","retrievers","agents","prompts"]
+    per_category_limit: 100
+  haystack:
+    components: ["retriever","reader","ranker","generator","document-store"]
+    per_component_limit: 100
+  awesome_lists:
+    urls:
+      - "https://raw.githubusercontent.com/josephmisiti/awesome-machine-learning/master/README.md"
+      - "https://raw.githubusercontent.com/hwchase17/langchain/master/docs/docs/extras/awesome_langchain.md"
+
+
+# normalize.py
+import json, re, uuid
+from hashlib import sha1
+
+DOMAINS = {
+  "nlp": ["token", "language", "bert", "gpt", "llm", "text", "qa", "ner", "summarization"],
+  "cv": ["image", "vision", "opencv", "segmentation", "detection", "pose"],
+  "audio": ["speech", "asr", "tts", "audio", "whisper"],
+  "multimodal": ["clip", "vision-language", "vlm", "mm"],
+  "reasoning": ["agent", "tool", "planning", "chain-of-thought", "symbolic"],
+  "robotics": ["ros", "manipulation", "kinematics"],
+  "data": ["etl", "dataset", "preprocessing"],
+  "infra": ["inference", "deployment", "quantization", "optimization", "serving"]
+}
+
+def stable_id(source: str, name: str, repo_url: str) -> str:
+    basis = f"{source}|{name}|{repo_url}"
+    return str(uuid.uuid5(uuid.NAMESPACE_URL, sha1(basis.encode()).hexdigest()))
+
+def infer_domains(text: str):
+    text_low = text.lower()
+    hits = []
+    for dom, keys in DOMAINS.items():
+        if any(k in text_low for k in keys):
+            hits.append(dom.upper())
+    return sorted(set(hits)) or ["N/A"]
+
+def normalize_component(raw: dict) -> dict:
+    text = " ".join(filter(None, [
+        raw.get("name",""), raw.get("description",""), raw.get("readme","")
+    ]))
+    domains = infer_domains(text)
+    return {
+      "id": stable_id(raw["source"], raw.get("name",""), raw.get("repo_url","")),
+      "name": raw.get("name"),
+      "summary": (raw.get("description") or "")[:220],
+      "domain": domains,
+      "skills": raw.get("skills", []),
+      "source": raw["source"],
+      "repo_url": raw.get("repo_url"),
+      "homepage": raw.get("homepage"),
+      "docs_url": raw.get("docs_url"),
+      "license": raw.get("license"),
+      "languages": raw.get("languages", []),
+      "tags": raw.get("tags", []),
+      "dependencies": raw.get("dependencies", []),
+      "example_code": (raw.get("example_code") or "")[:2000],
+      "readme_excerpt": (raw.get("readme") or "")[:1500],
+      "stars": raw.get("stars", 0),
+      "last_commit_iso": raw.get("last_commit_iso"),
+      "is_active": 1 if raw.get("is_active", True) else 0,
+      "added_at_iso": raw.get("added_at_iso"),
+      "updated_at_iso": raw.get("updated_at_iso"),
+      "deprecated": 1 if raw.get("deprecated") else 0,
+      "broken_links": raw.get("broken_links", [])
+    }
+
+
+# storage.py
+import json, sqlite3, time
+from contextlib import contextmanager
+
+CREATE_TABLE = """..."""  # from previous section
+
+@contextmanager
+def db(path="components.db"):
+    con = sqlite3.connect(path)
+    try:
+        yield con
+    finally:
+        con.commit()
+        con.close()
+
+def init_db():
+    with db() as con:
+        con.executescript(CREATE_TABLE)
+
+def upsert_component(con, comp: dict):
+    keys = list(comp.keys())
+    cols = ",".join(keys)
+    placeholders = ",".join(["?"]*len(keys))
+    updates = ",".join([f"{k}=excluded.{k}" for k in keys if k != "id"])
+    vals = [json.dumps(v) if isinstance(v, (list, dict)) else v for v in comp.values()]
+    sql = f"INSERT INTO components ({cols}) VALUES ({placeholders}) ON CONFLICT(id) DO UPDATE SET {updates}"
+    con.execute(sql, vals)
+
+
+# utils.py
+import os, time, random, functools, requests
+from dotenv import load_dotenv
+
+load_dotenv()
+UA = os.getenv("USER_AGENT", "AI-Component-Aggregator/1.0")
+
+def jitter(base=1.0):
+    return base + random.random()
+
+def retry(max_retries=3, backoff=2.0):
+    def deco(fn):
+        @functools.wraps(fn)
+        def wrap(*a, **kw):
+            for i in range(max_retries):
+                try:
+                    return fn(*a, **kw)
+                except Exception:
+                    if i == max_retries - 1:
+                        raise
+                    time.sleep((backoff ** i) * jitter())
+        return wrap
+    return deco
+
+@retry()
+def get(url, headers=None, params=None):
+    h = {"User-Agent": UA}
+    if headers: h.update(headers)
+    r = requests.get(url, headers=h, params=params, timeout=30)
+    r.raise_for_status()
+    return r
+
+
+# fetchers/github.py
+import os, datetime
+from utils import get
+from normalize import normalize_component
+
+GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+
+def gh_headers():
+    h = {"Accept": "application/vnd.github+json"}
+    if GITHUB_TOKEN:
+        h["Authorization"] = f"Bearer {GITHUB_TOKEN}"
+    return h
+
+def search_repos(query, per_page=50):
+    url = "https://api.github.com/search/repositories"
+    data = get(url, headers=gh_headers(), params={"q": query, "per_page": per_page, "sort":"stars","order":"desc"}).json()
+    return data.get("items", [])
+
+def get_readme(owner, repo):
+    url = f"https://api.github.com/repos/{owner}/{repo}/readme"
+    r = get(url, headers=gh_headers())
+    if r.ok:
+        j = r.json()
+        if j.get("download_url"):
+            return get(j["download_url"]).text
+    return ""
+
+def hydrate_repo(repo):
+    owner, name = repo["full_name"].split("/")
+    readme = get_readme(owner, name)
+    return {
+      "source": "github",
+      "name": repo["name"],
+      "description": repo.get("description"),
+      "repo_url": repo["html_url"],
+      "homepage": repo.get("homepage"),
+      "license": (repo.get("license") or {}).get("spdx_id"),
+      "languages": [],  # optional: GET /repos/{owner}/{repo}/languages
+      "tags": [],
+      "dependencies": [],
+      "example_code": "",
+      "readme": readme,
+      "stars": repo.get("stargazers_count", 0),
+      "last_commit_iso": repo.get("pushed_at"),
+      "is_active": True,
+      "added_at_iso": datetime.datetime.utcnow().isoformat(),
+      "updated_at_iso": datetime.datetime.utcnow().isoformat(),
+      "deprecated": repo.get("archived") or repo.get("disabled") or False,
+      "broken_links": []
+    }
+
+def fetch(config):
+    comps = []
+    for q in config["sources"]["github"]["queries"]:
+        items = search_repos(q, per_page=config["sources"]["github"]["per_query_limit"])
+        for repo in items:
+            raw = hydrate_repo(repo)
+            comps.append(normalize_component(raw))
+    return comps
+
+
+
+# fetchers/huggingface.py
+import os, datetime
+from utils import get
+from normalize import normalize_component
+
+HF_TOKEN = os.getenv("HUGGINGFACE_TOKEN")
+
+def hf_headers():
+    h = {"Accept": "application/json"}
+    if HF_TOKEN:
+        h["Authorization"] = f"Bearer {HF_TOKEN}"
+    return h
+
+def list_models(task, limit=50):
+    url = "https://huggingface.co/api/models"
+    params = {"pipeline_tag": task, "limit": limit, "sort":"downloads"}
+    return get(url, headers=hf_headers(), params=params).json()
+
+def model_card(repo_id):
+    url = f"https://huggingface.co/api/models/{repo_id}"
+    return get(url, headers=hf_headers()).json()
+
+def fetch(config):
+    out = []
+    for task in config["sources"]["huggingface"]["tasks"]:
+        arr = list_models(task, config["sources"]["huggingface"]["per_task_limit"])
+        for m in arr:
+            meta = model_card(m["modelId"])
+            readme = meta.get("cardData", {}).get("README", "") or meta.get("siblings", [{}])[0].get("rfilename","")
+            raw = {
+              "source": "huggingface",
+              "name": meta.get("id"),
+              "description": meta.get("pipeline_tag") or meta.get("tags"),
+              "repo_url": f"https://huggingface.co/{meta.get('id')}",
+              "homepage": f"https://huggingface.co/{meta.get('id')}",
+              "docs_url": f"https://huggingface.co/{meta.get('id')}",
+              "license": meta.get("license"),
+              "languages": ["Python"],
+              "tags": meta.get("tags", []),
+              "dependencies": [],
+              "example_code": "",  # optional: derive from model card if present
+              "readme": str(readme)[:5000],
+              "stars": meta.get("likes", 0),
+              "last_commit_iso": meta.get("lastModified"),
+              "is_active": True,
+              "added_at_iso": datetime.datetime.utcnow().isoformat(),
+              "updated_at_iso": datetime.datetime.utcnow().isoformat(),
+              "deprecated": False,
+              "broken_links": []
+            }
+            out.append(normalize_component(raw))
+    return out
+
+
+
+# fetchers/langchain_hub.py
+import datetime
+from utils import get
+from normalize import normalize_component
+
+BASE = "https://api.langchain.plus/api/hub"  # adjust to current hub endpoint if needed
+
+def fetch_category(cat, limit=100):
+    # Fallback: if API unavailable, parse known hub index pages
+    url = f"{BASE}/{cat}?limit={limit}"
+    return get(url).json().get("items", [])
+
+def fetch(config):
+    out = []
+    cats = config["sources"]["langchain_hub"]["categories"]
+    for c in cats:
+        try:
+            items = fetch_category(c, config["sources"]["langchain_hub"]["per_category_limit"])
+        except Exception:
+            items = []
+        for it in items:
+            raw = {
+              "source": "langchain_hub",
+              "name": it.get("name"),
+              "description": it.get("description"),
+              "repo_url": it.get("url"),
+              "homepage": it.get("url"),
+              "docs_url": it.get("url"),
+              "license": None,
+              "languages": ["Python"],
+              "tags": [c],
+              "dependencies": [],
+              "example_code": it.get("content","")[:2000],
+              "readme": it.get("content","")[:4000],
+              "stars": 0,
+              "last_commit_iso": None,
+              "is_active": True,
+              "added_at_iso": datetime.datetime.utcnow().isoformat(),
+              "updated_at_iso": datetime.datetime.utcnow().isoformat(),
+              "deprecated": False,
+              "broken_links": []
+            }
+            out.append(normalize_component(raw))
+    return out
+
+
+
+
+# fetchers/haystack.py
+import datetime
+from utils import get
+from normalize import normalize_component
+
+DOCS_IDX = "https://raw.githubusercontent.com/deepset-ai/haystack/main/README.md"
+
+def fetch(config):
+    # Simple approach: parse Haystack README and components docs pages
+    readme = get(DOCS_IDX).text
+    out = []
+    for comp in config["sources"]["haystack"]["components"]:
+        raw = {
+          "source": "haystack",
+          "name": f"haystack-{comp}",
+          "description": f"Haystack {comp} component",
+          "repo_url": "https://github.com/deepset-ai/haystack",
+          "homepage": "https://haystack.deepset.ai/",
+          "docs_url": "https://docs.haystack.deepset.ai/",
+          "license": "Apache-2.0",
+          "languages": ["Python"],
+          "tags": ["haystack", comp],
+          "dependencies": ["haystack"],
+          "example_code": "",
+          "readme": readme[:4000],
+          "stars": 0,
+          "last_commit_iso": None,
+          "is_active": True,
+          "added_at_iso": datetime.datetime.utcnow().isoformat(),
+          "updated_at_iso": datetime.datetime.utcnow().isoformat(),
+          "deprecated": False,
+          "broken_links": []
+        }
+        out.append(normalize_component(raw))
+    return out
+
+
+
+# fetchers/awesome_lists.py
+import datetime, re
+from utils import get
+from normalize import normalize_component
+
+LINK_RE = re.compile(r"- 
+
+\[([^\]
+
+]+)\]
+
+\((https?://[^\)]+)\)\s*-?\s*(.*)")
+
+def fetch(config):
+    out = []
+    for url in config["sources"]["awesome_lists"]["urls"]:
+        text = get(url).text
+        for m in LINK_RE.finditer(text):
+            name, link, desc = m.groups()
+            raw = {
+              "source": "awesome",
+              "name": name.strip(),
+              "description": desc.strip()[:220],
+              "repo_url": link,
+              "homepage": link,
+              "docs_url": link,
+              "license": None,
+              "languages": [],
+              "tags": ["awesome"],
+              "dependencies": [],
+              "example_code": "",
+              "readme": "",
+              "stars": 0,
+              "last_commit_iso": None,
+              "is_active": True,
+              "added_at_iso": datetime.datetime.utcnow().isoformat(),
+              "updated_at_iso": datetime.datetime.utcnow().isoformat(),
+              "deprecated": False,
+              "broken_links": []
+            }
+            out.append(normalize_component(raw))
+    return out
+
+
+
+# exporters/export_jsonl.py
+import json
+
+def export_jsonl(rows, path="export/components.jsonl"):
+    import os
+    os.makedirs("export", exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        for r in rows:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+
+# exporters/export_markdown.py
+from collections import defaultdict
+
+def export_markdown(rows, path="export/index.md"):
+    import os
+    os.makedirs("export", exist_ok=True)
+    rows_by_domain = defaultdict(list)
+    for r in rows:
+        for d in r["domain"]:
+            rows_by_domain[d].append(r)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("# AI Component Library\n\n")
+        for dom in sorted(rows_by_domain.keys()):
+            f.write(f"## {dom}\n\n")
+            for r in rows_by_domain[dom]:
+                name = r['name'] or 'Unnamed'
+                repo = r.get('repo_url') or r.get('homepage') or ''
+                summary = r.get('summary') or ''
+                f.write(f"- **{name}** — {summary} [{repo}]\n")
+            f.write("\n")
+
+
+# main.py
+import os, yaml
+from storage import init_db, db, upsert_component
+from fetchers import github, huggingface, langchain_hub, haystack, awesome_lists
+from exporters.export_jsonl import export_jsonl
+from exporters.export_markdown import export_markdown
+
+FETCHERS = [github, huggingface, langchain_hub, haystack, awesome_lists]
+
+def load_config(path="config.yml"):
+    with open(path, "r", encoding="utf-8") as f:
+        return yaml.safe_load(f)
+
+def run():
+    config = load_config()
+    init_db()
+    all_rows = []
+    for mod in FETCHERS:
+        try:
+            rows = mod.fetch(config)
+            all_rows.extend(rows)
+        except Exception as e:
+            print(f"[WARN] fetcher {mod.__name__} failed: {e}")
+
+    # dedupe by id in-memory before DB upsert
+    seen = {}
+    for r in all_rows:
+        seen[r["id"]] = r
+    all_rows = list(seen.values())
+
+    with db() as con:
+        for r in all_rows:
+            upsert_component(con, r)
+
+    export_jsonl(all_rows)
+    export_markdown(all_rows)
+    print(f"Done. Collected {len(all_rows)} components.")
+
+if __name__ == "__main__":
+    run()
+
+
+How to use and extend
+Setup:
+
+Create env: python -m venv .venv && source .venv/bin/activate
+
+Install deps: pip install requests pyyaml python-dotenv
+
+Configure: copy .env.example to .env and fill tokens; adjust config.yml queries and limits.
+
+Run: python main.py
+
+Extend sources:
+
+Add a fetcher: create fetchers/your_source.py with fetch(config) -> [normalized dicts].
+
+Plug it in: append to FETCHERS in main.py..
+
+Map domains/skills: enhance normalize.infer_domains and add lightweight NLP tagging if desired.
+
+Quality controls:
+
+Activity filter: mark inactive if last_commit_iso older than a threshold.
+
+License gating: include only OSI-approved licenses if needed.
+
+Broken link check: add a HEAD checker and populate broken_links.
+
+Examples: scrape README fenced code blocks as example_code (truncate).
+
+Outputs:
+
+JSONL: machine-readable for indexing/search.
+
+Markdown: human-friendly index grouped by domain.
+
+You can add SQLite queries or a simple FastAPI service later for browsing.

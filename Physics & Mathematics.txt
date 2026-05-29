@@ -1,0 +1,43 @@
+Physics & Mathematics:
+
+String Theory – A candidate for the theory of everything, describing reality in terms of vibrating strings.
+
+Loop Quantum Gravity – An approach to quantum gravity that suggests spacetime itself is quantized.
+
+Holographic Principle – The idea that all information about a volume of space is encoded on its boundary.
+
+Mathematical Universe Hypothesis – The proposal that reality itself is a mathematical structure.
+
+Computational & Simulation-Based Approaches:
+
+Digital Physics – The concept that the universe operates like a computational system.
+
+Simulation Hypothesis – The idea that reality might be an artificial simulation.
+
+Cellular Automata – Simple computational rules generating complex behaviors, possibly mimicking physical laws.
+
+Agent-Based Modeling – A framework for simulating reality using autonomous entities that learn and adapt.
+
+Complexity & Emergence:
+
+Complex Systems Theory – The study of emergent behaviors arising from interactions of simple components.
+
+Network Science – The analysis of structural connections at multiple scales, from neurons to galaxies.
+
+Fractal Cosmology – The idea that the structure of the universe exhibits self-similar patterns across scales.
+
+Emergence Theory – Explains how higher-level phenomena arise that cannot be reduced to their parts.
+
+Consciousness & Reality Perception:
+
+Integrated Information Theory (IIT) – A mathematical framework for understanding consciousness.
+
+Quantum Consciousness – The hypothesis that quantum effects contribute to conscious experience.
+
+Predictive Processing – A model in which reality emerges through the brain’s updating of predictions based on sensory input.
+
+Embodied Cognition – The idea that consciousness is shaped by sensorimotor interactions with the environment.
+
+Machine Consciousness & AI Applications:
+
+Computational Theory of Mind – A framework for implementing consciousness-like processes in artificial systems.
